@@ -4,28 +4,26 @@ import java.util.Random;
 
 public class Individual {
     public static final int GENS_BITS = 17;
-    public String[] gens;
+    public String[] genes;
     public double result;
-    public double fitness;
     public Individual next;
-    //选中的概率
+    //被选中的概率
     public double rate;
 
     public Individual() {
-        this.gens = new String[GENS_BITS];
+        this.genes = new String[GENS_BITS];
         this.result = 0d;
-        this.fitness = 0d;
         this.next = null;
         this.rate = 0d;
     }
 
     public final void createByRandomGenes() {
         final Random random = new Random();
-        for (int i = 0; i < gens.length; i++) {
+        for (int i = 0; i < genes.length; i++) {
             if (random.nextDouble() < 0.5d) {
-                this.gens[i] = "0";
+                this.genes[i] = "0";
             } else {
-                this.gens[i] = "1";
+                this.genes[i] = "1";
             }
         }
     }
@@ -41,6 +39,22 @@ public class Individual {
 
     public final void calFitness(double x) {
         this.result = x + Math.sin(5 * x) * 10 + Math.cos(4 * x) * 7;
-        this.fitness = 1.0d / this.result;
+    }
+
+    public final Individual cloneArray() {
+        final Individual individual = new Individual();
+        System.arraycopy(this.genes, 0, individual.genes, 0, this.genes.length);
+        individual.result = this.result;
+        return individual;
+    }
+
+    public final void printRate() {
+        System.out.print("最大基因：");
+        for (String gene : genes) {
+            System.out.print(gene);
+        }
+        System.out.println();
+        System.out.println("对应x:" + decode(this.genes));
+        System.out.println("最大长度：" + this.result);
     }
 }

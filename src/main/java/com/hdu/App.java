@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class App {
     public static void main(String[] args) {
-        final Random random = new Random();
-        System.out.println(random.nextDouble());
+        double result=5.468623875609403 + Math.sin(5 * 5.468623875609403) * 10 + Math.cos(4 * 5.468623875609403) * 7;
+        System.out.println(result);
     }
 }
