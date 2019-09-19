@@ -33,7 +33,7 @@ public class Annealing {
                 if (xNew > -10 && xNew < 10) {
                     final double funNew = f(xNew);
                     final double res = funNew - funVal;
-                    if (res < 10) {
+                    if (res < 0) {
                         this.initX = xNew;
                     } else {
                         final double probability = Math.exp(-res / (K * this.nowT));
